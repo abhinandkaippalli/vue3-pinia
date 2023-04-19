@@ -8,11 +8,10 @@ export const useTaskStore = defineStore('taskStore', {
     ],
     name: 'Mario'
   }),
+  
   getters: {
     favs() {
-      () => {
-        return this.tasks.filters(t => t.isFav)
-      }
+        return this.tasks.filter(t => t.isFav)
     }
   }
 })
