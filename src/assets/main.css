@@ -59,6 +59,10 @@ header h1 {
   color: #bbb;
 }
 
+.task i.active {
+  color: #ff005d;
+}
+
 /* filter nav */
 .filter {
   width: 640px;
