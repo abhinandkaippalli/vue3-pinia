@@ -54,9 +54,19 @@ export const useTaskStore = defineStore('taskStore', {
         return t.id !== id
       })
     },
-    toggleFav(id) {
-      const task = this.tasks.find(t => t.id === id)
-      task.isFav = !task.isFav
+    async toggleFav(id) {
+      try {
+        const task = this.tasks.find(t => t.id === id)
+        task.isFav = !task.isFav
+        await axios.patch(`${url}/${id}`, task)
+        if (task.isFav) {
+          console.log('Favourite');
+        } else {
+          console.log('Removed from favourite');
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 })
