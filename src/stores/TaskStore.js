@@ -14,8 +14,8 @@ export const useTaskStore = defineStore('taskStore', {
       return this.tasks.filter(t => t.isFav)
     },
     favCount() {
-      return this.tasks.reduce((p,c) => {
-        return c.isFav ? p+1 : p
+      return this.tasks.reduce((p, c) => {
+        return c.isFav ? p + 1 : p
       }, 0)
     },
     totalCount: (state) => {
@@ -34,17 +34,23 @@ export const useTaskStore = defineStore('taskStore', {
         console.log(error);
       }
     },
-    addTask (task) {
+    async addTask(task) {
+      try {
+        const res = await axios.post(url, task);
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
       this.tasks.push(task)
     },
     deleteTask(id) {
-      this.tasks = this.tasks.filter( t => {
+      this.tasks = this.tasks.filter(t => {
         return t.id !== id
       })
     },
     toggleFav(id) {
-       const task = this.tasks.find(t => t.id === id)
-       task.isFav = !task.isFav
+      const task = this.tasks.find(t => t.id === id)
+      task.isFav = !task.isFav
     }
   }
 })
