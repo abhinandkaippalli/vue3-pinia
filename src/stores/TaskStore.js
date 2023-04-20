@@ -37,7 +37,7 @@ export const useTaskStore = defineStore('taskStore', {
     async addTask(task) {
       try {
         const res = await axios.post(url, task);
-        console.log(res);
+        console.log("Added succefully");
       } catch (error) {
         console.log(error);
       }
@@ -46,7 +46,7 @@ export const useTaskStore = defineStore('taskStore', {
     async deleteTask(id) {
       try {
         await axios.delete(`${url}/${id}`)
-        console.log(deleted);
+        console.log("Deleted succesfully");
       } catch (error) {
         console.log(error);
       }
