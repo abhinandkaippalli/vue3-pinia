@@ -43,7 +43,13 @@ export const useTaskStore = defineStore('taskStore', {
       }
       this.tasks.push(task)
     },
-    deleteTask(id) {
+    async deleteTask(id) {
+      try {
+        await axios.delete(`${url}/${id}`)
+        console.log(deleted);
+      } catch (error) {
+        console.log(error);
+      }
       this.tasks = this.tasks.filter(t => {
         return t.id !== id
       })
